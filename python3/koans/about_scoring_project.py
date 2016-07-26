@@ -6,21 +6,75 @@ from runner.koan import *
 # Greed is a dice game where you roll up to five dice to accumulate
 # points.  The following "score" function will be used calculate the
 # score of a single roll of the dice.
-#
+# def score(dice):
+#     if len(dice) > 5:
+#         return None
+
+#     numbers = {}.fromkeys(range(1,7), 0)
+#     score = 0
+
+#     for n in dice:
+#         numbers[n] += 1
+
+#     score += (numbers[1] // 3) * 1000
+#     for n in range(2,7):
+#         score += (numbers[n] // 3) * 100 * n
+#     score += (numbers[1] % 3) * 100
+#     score += (numbers[5] % 3) * 50
+
+#     return score
+
+# def score(dice):
+#    # You need to write this method
+#    score = 0
+
+#    roll = {}.fromkeys(set(dice), 0)
+#    for die in dice:
+#        roll[die] += 1
+
+#    if 1 in roll and roll[1] >= 3:
+#        roll[1] -= 3
+#        score += 1000
+
+#    for i in roll:
+#        if roll[i] >= 3:
+#            roll[i] -= 3
+#            score += i * 100
+
+#    for i in roll:
+#        if i == 1:
+#            score += 100 * roll[i]
+#        elif i== 5:
+#            score += 50 * roll[i]
+
+#    return score
+
+# def score(dice):
+#     numbers = {}.fromkeys(range(1, 7), 0)
+#     score = 0
+
+#     for roll in dice:
+#         numbers[roll] += 1
+
+#    score += (numbers[1] // 3) * 1000
+
+#    for num in range(2, 7):
+#        score += (numbers[num] // 3) * 100 * num
+
+#    score += (numbers[1] % 3) * 100
+#    score += (numbers[5] % 3) * 50
+
+#    return score
 # A greed roll is scored as follows:
-#
-# * A set of three ones is 1000 points
 #
 # * A set of three numbers (other than ones) is worth 100 times the
 #   number. (e.g. three fives is 500 points).
 #
 # * A one (that is not part of a set of three) is worth 100 points.
-#
 # * A five (that is not part of a set of three) is worth 50 points.
 #
 # * Everything else is worth 0 points.
-#
-#
+
 # Examples:
 #
 # score([1,1,1,5,1]) => 1150 points
@@ -32,9 +86,27 @@ from runner.koan import *
 #
 # Your goal is to write the score method.
 
+# def score(dice):
+#     # You need to write this method
+#     pass
+
 def score(dice):
-    # You need to write this method
-    pass
+    dice_numbers = {}.fromkeys(range(1, 7), 0)
+    score = 0
+
+    for roll in dice:
+        dice_numbers[roll] += 1
+
+# * A set of three ones is 1000 points
+    score += (dice_numbers[1] // 3) * 1000
+
+    for num in range(2, 7):
+        score += (dice_numbers[num] // 3) * 100 * num
+
+    score += (dice_numbers[1] % 3) * 100
+    score += (dice_numbers[5] % 3) * 50
+
+    return score
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
